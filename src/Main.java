@@ -12,7 +12,7 @@ public class Main {
 
     public void run() {
         System.out.println("\nWelcome to Text Analysis Tool!");
-        System.out.println("Please enter a paragraph or a lengthy text:");
+        System.out.println("Enter a paragraph or a lengthy text:");
 
         // nextLine() reads a String value from the user
         userInput = scanner.nextLine();  // Read user input
@@ -25,6 +25,8 @@ public class Main {
         countWords();
         findMostCommonCharacter(false);
         findMostCommonCharacter(true);
+        getCharacterFrequency();
+        getWordFrequency();
     }
 
     public void countCharacters() {
@@ -41,7 +43,7 @@ public class Main {
 
     public void findMostCommonCharacter(boolean includeSpaces) {
         HashMap<Character, Integer> charFrequency = new HashMap<>();  // Create HashMap to store frequency of every character
-        int maxFrequency = 0;  // The frequency counting
+        int maxFrequency = 0;  // Frequency counting
         char mostCommonChar = '\0';
 
         for (int i = 0; i < userInput.length(); i++) {
@@ -59,5 +61,13 @@ public class Main {
         }
 
         System.out.println("The most common character " + (includeSpaces ? "(including spaces): " : "(excluding spaces): ") + "'" + mostCommonChar + "'");
+    }
+
+    public void getCharacterFrequency() {
+        System.out.println("Enter a character to check its frequency:");
+    }
+
+    public void getWordFrequency() {
+        System.out.println("Enter a word to check its frequency:");
     }
 }
