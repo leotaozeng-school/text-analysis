@@ -1,6 +1,5 @@
 // a character in text can refer to a letter, number, common punctuation marks (such as "." or "-"), and whitespace.
 
-import java.util.Objects;
 import java.util.Scanner;  // Import the Scanner class
 import java.util.HashMap;
 
@@ -44,7 +43,7 @@ public class Main {
     }
 
     public void countWords() {
-        words = userTextInput.toLowerCase().trim().split("\\s+");
+        words = userTextInput.toLowerCase().trim().split("\\s+");  // Split the text into words
         int totalWords = words.length;
         System.out.println("Total number of words: " + totalWords);
     }
@@ -95,7 +94,9 @@ public class Main {
         int frequency = 0;
 
         for (String word : words) {
-            if (Objects.equals(word, userWordInput)) {
+            // Remove any punctuation from the word
+            word = word.replaceAll("[^a-zA-Z]", "");
+            if (word.equals(userWordInput)) {
                 frequency += 1;
             }
         }
