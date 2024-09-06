@@ -15,18 +15,21 @@ public class Main {
 
         // nextLine() reads a String value from the user
         userInput = scanner.nextLine();  // Read user input
-
-        countCharacter();
+        if (!userInput.isEmpty()) {
+            countCharacters();
+            countWords();
+        }
     }
 
-    public void countCharacter() {
-        // Count characters including spaces
-        int totalCharacters = userInput.length();
-
-        // Count characters excluding spaces
-        int totalCharactersWithoutSpaces = userInput.replace(" ", "").length();
-
+    public void countCharacters() {
+        int totalCharacters = userInput.length();  // Count characters including spaces
+        int totalCharactersWithoutSpaces = userInput.replace(" ", "").length();  // Count characters excluding spaces
         System.out.println("Total number of characters (including spaces): " + totalCharacters);
         System.out.println("Total number of characters (excluding spaces): " + totalCharactersWithoutSpaces);
+    }
+
+    public void countWords() {
+        String[] words = userInput.trim().split("\\s+");
+        System.out.println("Total number of words: " + words.length);
     }
 }
