@@ -1,8 +1,7 @@
 // a character in text can refer to a letter, number, common punctuation marks (such as "." or "-"), and whitespace.
 
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Scanner;  // Import the Scanner class
+import java.util.Scanner;
 import java.util.HashMap;
 
 public class Main {
