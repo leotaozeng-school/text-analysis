@@ -1,5 +1,3 @@
-// a character in text can refer to a letter, number, common punctuation marks (such as "." or "-"), and whitespace.
-
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.HashMap;
@@ -15,6 +13,7 @@ public class Main {
         app.run();
     }
 
+    // User Input: Ask the user to input a paragraph or a lengthy text. Your program should read and store this input.
     public void run() {
         System.out.println("\nWelcome to Text Analysis Tool!");
         System.out.println("Enter a paragraph or a lengthy text:");
@@ -41,6 +40,7 @@ public class Main {
         getWordFrequency();
     }
 
+    // Character Count: Calculate and display the total number of characters in the input text.
     public void countCharacters() {
         int totalCharacters = userTextInput.length();  // Count characters including spaces
         int totalCharactersWithoutSpaces = userTextInput.replace(" ", "").length();  // Count characters excluding spaces
@@ -48,6 +48,7 @@ public class Main {
         System.out.println("Total number of characters (excluding spaces): " + totalCharactersWithoutSpaces);
     }
 
+    // Word Count: Calculate and display the total number of words in the input text. Assume that words are separated by spaces.
     public void countWords() {
         words = userTextInput.toLowerCase().trim().split("\\s+");  // Split the text into words
         int totalWords = 0;
@@ -62,6 +63,7 @@ public class Main {
         System.out.println("Total number of words: " + totalWords);
     }
 
+    // Unique Words: Calculate and display the number of unique words in the text (case-insensitive).
     public void countUniqueWords() {
         // Create a new HashSet to store strings
         HashSet<String> uniqueWords = new HashSet<>();
@@ -77,6 +79,7 @@ public class Main {
         System.out.println("Total number of unique words: " + uniqueWords.size());
     }
 
+    // Most Common Character: Find and display the most common character in the text. In case of a tie, select any of the tied characters.
     public void findMostCommonCharacter(boolean includeSpaces) {
         HashMap<Character, Integer> charFrequency = new HashMap<>();  // Create HashMap to store frequency of every character
         int maxFrequency = 0;  // Frequency counting
@@ -85,10 +88,8 @@ public class Main {
         for (int i = 0; i < userTextInput.length(); i++) {
             // Push each character into map and increase its frequency
             char c = userTextInput.charAt(i);
-
             if (includeSpaces || !Character.isWhitespace(c)) {
                 charFrequency.put(c, charFrequency.getOrDefault(c, 0) + 1);
-
                 if(charFrequency.get(c) > maxFrequency) {
                     maxFrequency = charFrequency.get(c);
                     mostCommonChar = c;
@@ -99,6 +100,7 @@ public class Main {
         System.out.println("The most common character " + (includeSpaces ? "(including spaces): " : "(excluding spaces): ") + "'" + mostCommonChar + "'");
     }
 
+    // Character Frequency: Ask the user to input a character. Check and display the frequency of occurrences of this character in the text. Be case-insensitive (e.g., 'a' and 'A' should be considered the same character).
     public void getCharacterFrequency() {
         System.out.print("Enter a character to check its frequency: ");
 
@@ -107,7 +109,6 @@ public class Main {
 
         for (int i = 0; i < userTextInput.length(); i++) {
             char c = userTextInput.toLowerCase().charAt(i);
-
             if (c == userCharInput) {
                 frequency += 1;
             }
@@ -116,6 +117,7 @@ public class Main {
         System.out.println("The character '" + userCharInput + "' appears " + frequency + " time(s)");
     }
 
+    // Word Frequency: Ask the user to input a word. Check and display the frequency of occurrences of this word in the text. Be case-insensitive.
     public void getWordFrequency() {
         System.out.print("Enter a word to check its frequency: ");
 
@@ -133,3 +135,5 @@ public class Main {
         System.out.println("The word '" + userWordInput + "' appears " + frequency + " time(s)");
     }
 }
+
+// a character in text can refer to a letter, number, common punctuation marks (such as "." or "-"), and whitespace.
