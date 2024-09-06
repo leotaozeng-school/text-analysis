@@ -1,5 +1,7 @@
 // a character in text can refer to a letter, number, common punctuation marks (such as "." or "-"), and whitespace.
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Scanner;  // Import the Scanner class
 import java.util.HashMap;
 
@@ -20,17 +22,22 @@ public class Main {
 
         // nextLine() reads a String value from the user
         userTextInput = scanner.nextLine();  // Read user input
-
         if (userTextInput == null || userTextInput.isEmpty()) {
             throw new IllegalStateException("Please make sure to enter a paragraph or a lengthy text");
         }
 
+        System.out.println();
         countCharacters();
-        countWords();
 
+        System.out.println();
+        countWords();
+        countUniqueWords();
+
+        System.out.println();
         findMostCommonCharacter(false);
         findMostCommonCharacter(true);
 
+        System.out.println();
         getCharacterFrequency();
         getWordFrequency();
     }
@@ -44,8 +51,31 @@ public class Main {
 
     public void countWords() {
         words = userTextInput.toLowerCase().trim().split("\\s+");  // Split the text into words
-        int totalWords = words.length;
+        int totalWords = 0;
+
+        for (String word : words) {
+            word = word.replaceAll("[^a-zA-Z]", "");
+            if (!word.isEmpty()) {
+                totalWords++;
+            }
+        }
+
         System.out.println("Total number of words: " + totalWords);
+    }
+
+    public void countUniqueWords() {
+        // Create a new HashSet to store strings
+        HashSet<String> uniqueWords = new HashSet<>();
+
+        for (String word : words) {
+            // Remove any punctuation from the word
+            word = word.replaceAll("[^a-zA-Z]", "");
+            if (!word.isEmpty()) {
+                uniqueWords.add(word);
+            }
+        }
+
+        System.out.println("Total number of unique words: " + uniqueWords.size());
     }
 
     public void findMostCommonCharacter(boolean includeSpaces) {
@@ -71,7 +101,7 @@ public class Main {
     }
 
     public void getCharacterFrequency() {
-        System.out.print("\nEnter a character to check its frequency: ");
+        System.out.print("Enter a character to check its frequency: ");
 
         char userCharInput = scanner.nextLine().toLowerCase().charAt(0);  // Read user input
         int frequency = 0;
@@ -84,7 +114,7 @@ public class Main {
             }
         }
 
-        System.out.println("The character '" + userCharInput + "' appears " + frequency + " time(s) in the text.");
+        System.out.println("The character '" + userCharInput + "' appears " + frequency + " time(s)");
     }
 
     public void getWordFrequency() {
@@ -101,6 +131,6 @@ public class Main {
             }
         }
 
-        System.out.println("The word '" + userWordInput + "' appears " + frequency + " time(s) in the text.");
+        System.out.println("The word '" + userWordInput + "' appears " + frequency + " time(s)");
     }
 }
