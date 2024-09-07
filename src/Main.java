@@ -121,7 +121,7 @@ public class Main {
     public void getWordFrequency() {
         System.out.print("Enter a word to check its frequency: ");
 
-        String userWordInput = scanner.nextLine().toLowerCase().trim().split("\\s+")[0];
+        String userWordInput = scanner.nextLine().toLowerCase().trim().replaceAll("[^a-zA-Z]", "").split("\\s+")[0];
         int frequency = 0;
 
         for (String word : words) {
