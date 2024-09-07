@@ -21,8 +21,11 @@ public class Main {
         // nextLine() reads a String value from the user
         userTextInput = scanner.nextLine();  // Read user input
         if (userTextInput == null || userTextInput.isEmpty()) {
-            throw new IllegalStateException("Please make sure to enter a paragraph or a lengthy text");
+            throw new IllegalStateException("Please make sure to enter a paragraph or a lengthy text.");
         }
+
+        // Split user input into words
+        words = userTextInput.toLowerCase().trim().split("\\s+");
 
         System.out.println();
         countCharacters();
@@ -38,6 +41,8 @@ public class Main {
         System.out.println();
         getCharacterFrequency();
         getWordFrequency();
+
+        scanner.close();
     }
 
     // Character Count: Calculate and display the total number of characters in the input text.
@@ -50,7 +55,6 @@ public class Main {
 
     // Word Count: Calculate and display the total number of words in the input text. Assume that words are separated by spaces.
     public void countWords() {
-        words = userTextInput.toLowerCase().trim().split("\\s+");  // Split the text into words
         int totalWords = 0;
 
         for (String word : words) {
@@ -121,7 +125,11 @@ public class Main {
     public void getWordFrequency() {
         System.out.print("Enter a word to check its frequency: ");
 
-        String userWordInput = scanner.nextLine().toLowerCase().trim().replaceAll("[^a-zA-Z]", "").split("\\s+")[0];
+        String userWordInput = scanner.nextLine().toLowerCase().trim();
+        if (!userWordInput.matches("[a-zA-Z]+")) {
+            throw new IllegalArgumentException("Invalid word: '" + userWordInput + "'. Words contain only alphabetic characters.");
+        }
+
         int frequency = 0;
 
         for (String word : words) {
